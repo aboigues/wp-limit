@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  web:
+    image: nginx:latest
+    deploy:
+      resources:
+        limits:
+          memory: 512M # Limite la mémoire vive à 512 Mo
+          cpus: "0.5"  # Limite le CPU à 50 % d'un cœur
+        reservations:
+          memory: 256M # Réserve au minimum 256 Mo de mémoire
+          cpus: "0.25" # Réserve au minimum 25 % d'un cœur
+    memswap_limit: 768M # Limite totale RAM + swap à 768 Mo
+
+
