@@ -1,3 +1,4 @@
+version: "3.8"
 
 services:
   wordpress:
@@ -8,16 +9,15 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     ports:
-      - "8080:80"
+      - "8091:80"
     deploy:
       resources:
         limits:
-          memory: 512M  # Limite la RAM à 512 Mo
+          memory: 512M  # Limite stricte à 512 Mo de RAM
           cpus: "0.5"   # Limite le CPU à 50 %
         reservations:
           memory: 256M  # Réserve un minimum de 256 Mo
           cpus: "0.25"  # Réserve un minimum de 25 %
-    memswap_limit: 768M  # Limite totale RAM + swap à 768 Mo
 
   db:
     image: mysql:5.7
@@ -29,15 +29,15 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1024M  # Limite la RAM à 1 Go
+          memory: 1024M  # Limite stricte à 1 Go de RAM
           cpus: "0.7"    # Limite le CPU à 70 %
         reservations:
           memory: 512M   # Réserve un minimum de 512 Mo
           cpus: "0.5"    # Réserve un minimum de 50 %
-    memswap_limit: 1536M  # Limite totale RAM + swap à 1,5 Go
     volumes:
       - db_data:/var/lib/mysql
 
 volumes:
   db_data:
+
 
